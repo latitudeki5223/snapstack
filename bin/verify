@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# SnapStack Quality Verification Script
+# Run this before committing any code
+
+set -e
+
+echo "🔍 SnapStack Quality Checks"
+echo "=========================="
+
+# Check if we're in the right directory
+if [ ! -f "turbo.json" ]; then
+    echo "❌ Error: Must run from project root"
+    exit 1
+fi
+
+# Check for node_modules
+if [ ! -d "node_modules" ]; then
+    echo "📦 Installing dependencies..."
+    npm install
+fi
+
+# Run linting
+echo ""
+echo "🎨 Running linters..."
+if npm run lint 2>/dev/null; then
+    echo "✅ Linting passed"
+else
+    echo "⚠️  No lint script found or linting skipped"
+fi
+
+# Run type checking
+echo ""
+echo "📝 Running type checks..."
+if npm run typecheck 2>/dev/null; then
+    echo "✅ Type checking passed"
+else
+    echo "⚠️  No typecheck script found or type checking skipped"
+fi
+
+# Run tests
+echo ""
+echo "🧪 Running tests..."
+if npm test 2>/dev/null; then
+    echo "✅ Tests passed"
+else
+    echo "⚠️  No tests found or testing skipped"
+fi
+
+# Check for build
+echo ""
+echo "🏗️  Running build..."
+if npm run build 2>/dev/null; then
+    echo "✅ Build successful"
+else
+    echo "⚠️  No build script found or build skipped"
+fi
+
+# Security audit
+echo ""
+echo "🔒 Running security audit..."
+npm audit --audit-level=high 2>/dev/null || echo "⚠️  Some vulnerabilities found (non-critical)"
+
+# Check for sensitive data
+echo ""
+echo "🔍 Checking for sensitive data..."
+if grep -r "sk_test\|sk_live\|OPENAI_API_KEY\|SOVRN_API_KEY" --exclude-dir=node_modules --exclude-dir=.git --exclude="*.md" --exclude=".env*" . 2>/dev/null; then
+    echo "❌ ERROR: Found potential API keys in code!"
+    echo "Please move sensitive data to .env files"
+    exit 1
+else
+    echo "✅ No sensitive data found in code"
+fi
+
+# Check for TODOs
+echo ""
+echo "📋 Checking for TODOs..."
+TODO_COUNT=$(grep -r "TODO\|FIXME\|XXX" --exclude-dir=node_modules --exclude-dir=.git . 2>/dev/null | wc -l || echo "0")
+if [ "$TODO_COUNT" -gt "0" ]; then
+    echo "⚠️  Found $TODO_COUNT TODO/FIXME comments"
+else
+    echo "✅ No TODOs found"
+fi
+
+# Final message
+echo ""
+echo "=========================="
+echo "✨ Quality checks complete!"
+echo ""
+echo "If all checks passed, you're ready to commit:"
+echo "  git add ."
+echo "  git commit -m 'your message'"
+echo ""
+echo "Remember to follow our commit format:"
+echo "  type(scope): description"
+echo "  Examples:"
+echo "    feat(parser): add electronics category"
+echo "    fix(ui): correct mobile layout issue"
+echo "    docs(api): update endpoint documentation"

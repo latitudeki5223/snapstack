@@ -1,0 +1,14 @@
+{
+  "name": "@snapstack/backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "python3 app.py",
+    "build": "echo 'Python app - no build required'",
+    "test": "pytest",
+    "lint": "black . --check && flake8",
+    "format": "black .",
+    "start": "python3 app.py"
+  },
+  "devDependencies": {}
+}

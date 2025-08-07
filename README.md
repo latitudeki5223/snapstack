@@ -1,56 +1,108 @@
-# SnapStack
+# 🚀 SnapStack
 
-A project integrated with Claude Code GitHub Action for AI-powered development assistance.
+> AI-powered smart shopping assistant that transforms any list into a price-compared, ready-to-buy shopping cart in seconds.
 
-## Claude Code GitHub Action Setup
+[![TurboRepo](https://img.shields.io/badge/Built%20with-TurboRepo-blue)](https://turbo.build)
+[![Claude Code](https://img.shields.io/badge/AI%20Powered-Claude%20Code-orange)](https://claude.ai)
 
-This repository is configured with the Claude Code GitHub Action, which allows you to interact with Claude directly in GitHub issues and pull requests.
+## 📖 Documentation
 
-### How to Use
+**→ See [PROJECT_GUIDE.md](./PROJECT_GUIDE.md) for complete documentation**
 
-Simply mention `@claude` in:
-- Pull request descriptions or comments
-- Issue descriptions or comments
-- Code review comments
+## 🏃 Quick Start
 
-Claude will analyze your request and can:
-- Write new code and create PRs
-- Review existing PRs for bugs and improvements
-- Fix reported issues automatically
-- Refactor code based on your instructions
-- Update documentation
+```bash
+# Install dependencies
+npm install
 
-### Examples
+# Start all services in development mode
+npm run dev
 
-In an issue or PR, you can write:
-```
-@claude please review this code for potential improvements
+# Run quality checks before committing
+npm run verify
 ```
 
-```
-@claude can you help fix the bug in the authentication module?
-```
+## 🏗️ Project Structure
 
 ```
-@claude refactor this function to be more efficient
+snapstack/
+├── apps/
+│   ├── web/        # Vite + React + Tailwind
+│   ├── mobile/     # React Native + Expo
+│   └── backend/    # Flask + PostgreSQL
+├── packages/
+│   ├── parser/     # Hybrid parsing engine
+│   ├── ui/         # Shared components
+│   ├── types/      # TypeScript definitions
+│   └── utils/      # Helper functions
+└── PROJECT_GUIDE.md # Master documentation
 ```
 
-### Setup Requirements
+## 🎯 Core Features
 
-Before using, you need to:
+- **Smart Parser**: Hybrid 3-layer parsing (regex → NLP → LLM)
+- **Price Comparison**: Real-time prices from 40,000+ merchants
+- **Dual Checkout**: Affiliate links or unified Stripe payment
+- **Mobile-First**: Native iOS/Android apps with Expo
+- **Monorepo**: TurboRepo for efficient builds
 
-1. **Add the Anthropic API Key** to your repository secrets:
-   - Go to Settings → Secrets and variables → Actions
-   - Click "New repository secret"
-   - Name: `ANTHROPIC_API_KEY`
-   - Value: Your Anthropic API key
+## 🛠️ Development
 
-2. **Enable GitHub Actions** if not already enabled in your repository
+```bash
+# Run specific app
+npm run dev -- --filter=web
+npm run dev -- --filter=mobile
+npm run dev -- --filter=backend
 
-### Getting Started
+# Build everything
+npm run build
 
-1. Create an issue or pull request
-2. Mention `@claude` with your request
-3. Claude will respond with code suggestions or create PRs automatically
+# Run tests
+npm run test
 
-For more information, visit the [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code).
+# Lint code
+npm run lint
+```
+
+## 🤖 Claude Code Integration
+
+This repository uses Claude Code GitHub Actions. Mention `@claude` in:
+- Pull requests
+- Issues  
+- Code reviews
+
+Claude will automatically:
+- Write code and create PRs
+- Review code for improvements
+- Fix bugs
+- Refactor based on instructions
+
+### Setup Claude Code
+
+1. Add `ANTHROPIC_API_KEY` to repository secrets
+2. Enable GitHub Actions
+3. Mention `@claude` in any issue or PR
+
+## 📊 Status
+
+- Phase 1: Foundation ✅
+- Phase 2: Parser Core 🚧
+- Phase 3: API Integrations ⏳
+- Phase 4: Core UI ⏳
+- Phase 5: Cart & Checkout ⏳
+- Phase 6: Polish & Launch ⏳
+
+## 🔗 Links
+
+- [Project Guide](./PROJECT_GUIDE.md)
+- [Claude Context](./CLAUDE.md)
+- [TurboRepo Docs](https://turbo.build/repo/docs)
+- [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code)
+
+## 📄 License
+
+Private commercial codebase - All rights reserved
+
+---
+
+*Built with ❤️ by the SnapStack team*
