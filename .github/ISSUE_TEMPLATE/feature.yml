@@ -1,0 +1,73 @@
+name: ✨ Feature Request
+description: Suggest a new feature for SnapStack
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Development Phase
+      description: Which phase does this feature belong to?
+      options:
+        - Parser Core
+        - API Integrations
+        - Core UI
+        - Cart & Checkout
+        - Polish & Launch
+        - Post-MVP
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is this for?
+      options:
+        - Parser
+        - API/Backend
+        - Admin UI
+        - User UI
+        - Mobile App
+        - Infrastructure
+        - Documentation
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: Clear description of the feature
+      placeholder: "As a [user type], I want to [action] so that [benefit]"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: How do we know when this is done?
+      placeholder: |
+        - [ ] Criteria 1
+        - [ ] Criteria 2
+        - [ ] Criteria 3
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - 🔴 High (This week)
+        - 🟡 Medium (This sprint)
+        - 🟢 Low (Backlog)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context, mockups, or examples

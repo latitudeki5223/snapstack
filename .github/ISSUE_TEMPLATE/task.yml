@@ -1,0 +1,63 @@
+name: 📋 Task
+description: Create a development task
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: dropdown
+    id: sprint
+    attributes:
+      label: Sprint
+      description: Which sprint is this for?
+      options:
+        - Current Sprint
+        - Next Sprint
+        - Backlog
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size Estimate
+      description: How long will this take?
+      options:
+        - XS (< 2 hours)
+        - S (2-4 hours)
+        - M (1 day)
+        - L (2-3 days)
+        - XL (1 week)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Task Description
+      description: What needs to be done?
+    validations:
+      required: true
+      
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Break down into subtasks
+      placeholder: |
+        - [ ] Subtask 1
+        - [ ] Subtask 2
+        - [ ] Subtask 3
+    validations:
+      required: false
+      
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What needs to be done first?
+      placeholder: "Depends on #123"
+      
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Plan
+      description: How will this be tested?
